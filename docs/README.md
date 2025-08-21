@@ -93,8 +93,9 @@ cookie-management-system-main/
 ## 📸 Screenshots
 
 (Add screenshots of app running, cookie table view, and diagnostics dialog)
-/Users/rk/Desktop/Screenshot 2025-08-21 at 21.37.17.png
-/Users/rk/Desktop/Screenshot 2025-08-21 at 21.37.40.png
+<img width="1188" height="850" alt="Screenshot 2025-08-21 at 21 37 17" src="https://github.com/user-attachments/assets/1374dc7b-491f-4069-8dfb-8fa378b7ae09" />
+<img width="702" height="531" alt="Screenshot 2025-08-21 at 21 37 40" src="https://github.com/user-attachments/assets/d207f954-7450-4891-b62f-909356133b4c" />
+
 ---
 
 ## ⚠️ Notes
