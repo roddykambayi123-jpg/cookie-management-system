@@ -9,6 +9,16 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 # C++ standard
 CONFIG += c++17 warn_on
 
+# ---- macOS app icon (guarded so build doesn’t fail if file is missing)
+macx:exists($$PWD/../resources/cookie.icns) {
+    ICON = $$PWD/../resources/cookie.icns
+} else {
+    message("Note: ../resources/cookie.icns not found; building without bundle icon.")
+}
+
+# (optional) Windows exe icon if you build on Windows too:
+win32:RC_ICONS = $$PWD/../resources/cookie.ico
+
 # ---- Include paths ----
 INCLUDEPATH += \
     $$PWD/../include \
@@ -23,7 +33,7 @@ SOURCES += \
     $$PWD/../src/ChromiumCookieReader.cpp \
     $$PWD/../src/FirefoxCookieReader.cpp \
     $$PWD/../src/ChooseBrowserDialog.cpp \
-    $$PWD/../src/SafariCookieReader.cpp \
+    $$PWD/../src/SafariCookieReader.cpp
 
 HEADERS += \
     $$PWD/../include/CookieManagementSystem.h \
@@ -43,7 +53,6 @@ FORMS += \
     $$PWD/../ui/RiskLegendPage.ui
 
 # ---- Resources ----
-# Update this to the resource file you actually have. If you don't have one yet, comment out the next two lines.
 RESOURCES += \
     $$PWD/../resources/CookieManagementSystem.qrc
 

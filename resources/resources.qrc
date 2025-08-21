@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/">
+    <file>resources/cookie.png</file>
+    <file>resources/cookie.ico</file>
+    <file>resources/cookie.icns</file>
+  </qresource>
+</RCC>
