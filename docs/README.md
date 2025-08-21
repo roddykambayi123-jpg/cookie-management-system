@@ -13,7 +13,8 @@ Supports major browsers like **Safari, Firefox, Chrome, Edge and Brave**.
 - Cookie anonymisation for sensitive identifiers (e.g., `_ga`, `SID`, `sessionid`)  
 - Delete cookies from the database (not just UI view)  
 - Category filtering, including `Unknown`  
-- Diagnostics dialog for debugging  
+- Diagnostics dialog for debugging
+- Exports cookie data in a csv format
 - Color-coded category badges (Marketing, Analytics, etc.)  
 - Cross-platform support (macOS, Linux, Windows planned)  
 - Application icon support (`cookie.icns` / `cookie.png`)  
