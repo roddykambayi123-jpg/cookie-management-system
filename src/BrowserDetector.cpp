@@ -95,43 +95,68 @@ void BrowserDetector::detectFirefox(QVector<BrowserInfo>& out) {
         }
     }
 }
-
 void BrowserDetector::detectSafari(QVector<BrowserInfo>& out) {
 #if defined(Q_OS_MAC)
     const QString h = QDir::homePath();
-    QStringList candidates;
-    // Legacy + sandboxed binarycookies
-    candidates << h + "/Library/Containers/com.apple.Safari/Data/Library/Cookies/Cookies.binarycookies";
-    candidates << h + "/Library/Cookies/Cookies.binarycookies";
-    // Newer WebKit: SQLite cookie store
-    candidates << h + "/Library/Containers/com.apple.Safari/Data/Library/WebKit/NetworkPersistentStorage/Cookies.sqlite";
-    // Safari Technology Preview (both formats)
-    candidates << h + "/Library/Containers/com.apple.SafariTechnologyPreview/Data/Library/Cookies/Cookies.binarycookies";
-    candidates << h + "/Library/Containers/com.apple.SafariTechnologyPreview/Data/Library/WebKit/NetworkPersistentStorage/Cookies.sqlite";
 
-    QString picked;
-    for (const QString& c : candidates) {
-        QFileInfo fi(c);
-        if (fi.exists() && fi.isFile() && fi.size() > 0) { picked = fi.absoluteFilePath(); break; }
-    }
+    // Candidate BinaryCookies paths (standard + alt + STP + legacy)
+    const QStringList binCandidates = {
+        h + "/Library/Containers/com.apple.Safari/Data/Library/Cookies/Cookies.binarycookies",
+        h + "/Library/Containers/com.apple.Safari/Data/Library/WebKit/Network/Cookies/Cookies.binarycookies",
+        h + "/Library/Cookies/Cookies.binarycookies",
+        h + "/Library/Containers/com.apple.SafariTechnologyPreview/Data/Library/Cookies/Cookies.binarycookies",
+        h + "/Library/Containers/com.apple.SafariTechnologyPreview/Data/Library/WebKit/Network/Cookies/Cookies.binarycookies"
+    };
 
-    // Last resort: any *.sqlite under NetworkPersistentStorage
-    if (picked.isEmpty()) {
-        const QString dirPath = h + "/Library/Containers/com.apple.Safari/Data/Library/WebKit/NetworkPersistentStorage";
-        QDir d(dirPath);
-        if (d.exists()) {
-            const auto list = d.entryInfoList(QStringList() << "*.sqlite", QDir::Files | QDir::Readable);
-            if (!list.isEmpty()) picked = list.first().absoluteFilePath();
-        }
-    }
+    // Candidate SQLite paths (modern WebKit persistent store)
+    const QStringList sqliteCandidates = {
+        h + "/Library/Containers/com.apple.Safari/Data/Library/WebKit/NetworkPersistentStorage/Cookies.sqlite",
+        h + "/Library/Containers/com.apple.SafariTechnologyPreview/Data/Library/WebKit/NetworkPersistentStorage/Cookies.sqlite"
+    };
 
-    if (!picked.isEmpty()) {
+    auto pushIfValid = [&](const QString& path) {
+        QFileInfo fi(path);
+        if (!fi.exists() || !fi.isFile() || fi.size() <= 0) return;
+
         BrowserInfo bi;
-        bi.name = picked.contains("TechnologyPreview") ? "Safari Technology Preview" : "Safari";
+        const bool isSTP = path.contains("SafariTechnologyPreview", Qt::CaseInsensitive);
+        bi.name = isSTP ? "Safari Technology Preview" : "Safari";
         bi.engine = BrowserEngine::Safari;
-        bi.cookieDbPath = picked;
-        bi.profilePath = QFileInfo(picked).dir().absolutePath();
+        bi.cookieDbPath = fi.absoluteFilePath();
+        bi.profilePath = fi.dir().absolutePath();
         out.push_back(bi);
+    };
+
+    // Push known candidates first (BinaryCookies & SQLite)
+    for (const QString& p : binCandidates)    pushIfValid(p);
+    for (const QString& p : sqliteCandidates) pushIfValid(p);
+
+    // Also enumerate any extra *.sqlite files under NetworkPersistentStorage
+    struct DirSpec { const char* rel; const char* label; } dirs[] = {
+        { "Library/Containers/com.apple.Safari/Data/Library/WebKit/NetworkPersistentStorage", "Safari" },
+        { "Library/Containers/com.apple.SafariTechnologyPreview/Data/Library/WebKit/NetworkPersistentStorage", "Safari Technology Preview" }
+    };
+    for (const auto& dspec : dirs) {
+        const QString dirPath = h + "/" + dspec.rel;
+        QDir d(dirPath);
+        if (!d.exists()) continue;
+        const auto list = d.entryInfoList(QStringList() << "*.sqlite", QDir::Files | QDir::Readable);
+        for (const QFileInfo& fi : list) {
+            // Avoid duplicating the specific Cookies.sqlite we might have already added
+            if (!fi.exists() || fi.size() <= 0) continue;
+
+            BrowserInfo bi;
+            bi.name = dspec.label;
+            bi.engine = BrowserEngine::Safari;
+            bi.cookieDbPath = fi.absoluteFilePath();
+            bi.profilePath = fi.dir().absolutePath();
+            // Skip if this exact path is already in 'out'
+            bool dup = false;
+            for (const auto& existing : out) {
+                if (existing.cookieDbPath == bi.cookieDbPath) { dup = true; break; }
+            }
+            if (!dup) out.push_back(bi);
+        }
     }
 #else
     Q_UNUSED(out);
