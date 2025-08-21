@@ -1,41 +1,110 @@
 # Cookie Management System
 
-A privacy-focused cookie management system built using **C++ and Qt Widgets**. This tool enables users to read, analyze, filter, and anonymize cookies, helping raise awareness about third-party tracking and promoting user data protection — with a strong focus on usability and visual feedback.
-
-> 🛠 Developed as part of my final year university project in Cyber Security.
-
----
-
-## 🚀 Features
-
-- ✅ **Cookie Import & Parsing** — Reads exported cookie data from common formats (e.g., `.csv`)
-- ✅ **Smart Anonymisation** — Masks sensitive identifiers like `_ga`, `sessionid`, and domains with `login`, `track`, `auth`, etc.
-- ✅ **Data Controller Highlighting** — Flags third-party controllers (e.g., Google, Meta)
-- ✅ **Risk Detection** — Highlights marketing or suspicious cookies with color-coded alerts
-- ✅ **Category Filtering** — Quickly filter by categories like Analytics, Marketing, Essential
-- ✅ **UI Enhancements** — Tooltips, badge colors, stylish buttons, and a gradient-styled summary panel
-- ✅ **Export Options** — Export cleaned cookie data for audits or analysis
+A cross-platform **Cookie Management System (CMS)** built with Qt and C++ that allows users to view, analyze, and manage browser cookies.  
+Supports major browsers like **Safari, Firefox, Chrome, Edge and Brave**.
 
 ---
 
-## 🖥️ Tech Stack
+## ✨ Features
 
-- **Language**: C++
-- **GUI Framework**: Qt 5 / Qt 6 (Qt Widgets)
-- **Build System**: QMake / Qt Creator
-- **Platform**: macOS, Windows
+- Detects installed browsers automatically  
+- Reads cookies from **Chromium, Firefox, Safari**  
+- Displays cookies in a **table view** with categories  
+- Cookie anonymisation for sensitive identifiers (e.g., `_ga`, `SID`, `sessionid`)  
+- Delete cookies from the database (not just UI view)  
+- Category filtering, including `Unknown`  
+- Diagnostics dialog for debugging  
+- Color-coded category badges (Marketing, Analytics, etc.)  
+- Cross-platform support (macOS, Linux, Windows planned)  
+- Application icon support (`cookie.icns` / `cookie.png`)  
+
+---
+
+## 🚀 How to Build
+
+### macOS
+```bash
+brew install qt sqlite
+qmake project/cookiemanagementsystem.pro
+make -j4
+./build/bin/CookieManagementSystem.app
+```
+
+### Linux (Ubuntu/Debian)
+```bash
+sudo apt update
+sudo apt install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libsqlite3-dev build-essential
+qmake project/cookiemanagementsystem.pro
+make -j4
+./build/bin/CookieManagementSystem
+```
+
+### Windows
+1. Install [Qt](https://www.qt.io/download) and MSVC or MinGW.  
+2. Open `Qt Creator`.  
+3. Load `project/cookiemanagementsystem.pro`.  
+4. Build & Run from within Qt Creator.  
+
+---
+
+## 🖥️ How to Run on a Fresh Machine
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/roddykambayi123-jpg/cookie-management-system-main.git
+   cd cookie-management-system-main/project
+   ```
+
+2. **Install dependencies**
+   - macOS: `brew install qt sqlite`  
+   - Linux: `sudo apt install qtbase5-dev qt5-qmake libsqlite3-dev build-essential`  
+   - Windows: Install Qt + compiler  
+
+3. **Build the project**
+   ```bash
+   cd project
+   qmake cookiemanagementsystem.pro
+   make -j4
+   ```
+
+4. **Run the app**
+   ```bash
+   ./build/bin/CookieManagementSystem
+   ```
+
+---
+
+## 📂 Project Structure
+
+```
+cookie-management-system-main/
+│── include/        # Header files
+│── src/            # Source files
+│── ui/             # UI forms (.ui)
+│── resources/      # Icons, .qrc
+│── project/        # .pro file
+│── build/          # Build output
+│── data/           # Sample cookies
+│── README.md
+```
 
 ---
 
 ## 📸 Screenshots
 
-*(Add images of your interface here — I can help if you want to capture some)*
+(Add screenshots of app running, cookie table view, and diagnostics dialog)
+/Users/rk/Desktop/Screenshot 2025-08-21 at 21.37.17.png
+/Users/rk/Desktop/Screenshot 2025-08-21 at 21.37.40.png
+---
+
+## ⚠️ Notes
+
+- **Safari cookies** may be protected by OS sandboxing. Full deletion might not be possible.  
+- This is an **educational/demo project** – not production-grade cookie manipulation software.  
+- Cross-platform testing is ongoing – report bugs via GitHub Issues.  
 
 ---
 
-## 🧪 How to Run
+## 📜 License
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/roddykambayi123-jpg/cookie-management-system.git
-   cd cookie-management-system
+MIT License © 2025 Roddy Kambayi
