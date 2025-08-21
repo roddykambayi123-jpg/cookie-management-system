@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsDialog</class>
+ <widget class="QDialog" name="SettingsDialog">
+  <property name="windowTitle"><string>Settings</string></property>
+  <property name="minimumSize"><size><width>520</width><height>320</height></size></property>
+  <layout class="QVBoxLayout" name="root">
+   <item>
+    <widget class="QTabWidget" name="tabs">
+     <widget class="QWidget" name="appearanceTab">
+      <attribute name="title"><string>Appearance</string></attribute>
+      <layout class="QFormLayout" name="formAppearance">
+       <item row="0" column="0"><widget class="QLabel" name="lblTheme"><property name="text"><string>Theme</string></property></widget></item>
+       <item row="0" column="1"><widget class="QComboBox" name="themeCombo">
+         <item><property name="text"><string>System</string></property></item>
+         <item><property name="text"><string>Light</string></property></item>
+         <item><property name="text"><string>Dark</string></property></item>
+       </widget></item>
+
+       <item row="1" column="0"><widget class="QLabel" name="lblFont"><property name="text"><string>Font size</string></property></widget></item>
+       <item row="1" column="1"><widget class="QSpinBox" name="fontSizeSpin">
+         <property name="minimum"><number>10</number></property>
+         <property name="maximum"><number>20</number></property>
+         <property name="value"><number>12</number></property>
+         <property name="suffix"><string> pt</string></property>
+       </widget></item>
+
+       <item row="2" column="1"><widget class="QCheckBox" name="highContrastChk">
+         <property name="text"><string>High contrast mode</string></property>
+       </widget></item>
+      </layout>
+     </widget>
+
+     <widget class="QWidget" name="accessibilityTab">
+      <attribute name="title"><string>Accessibility</string></attribute>
+      <layout class="QFormLayout" name="formAccessibility">
+       <item row="0" column="1"><widget class="QCheckBox" name="tooltipsChk"><property name="text"><string>Show helper tooltips</string></property></widget></item>
+       <item row="1" column="1"><widget class="QCheckBox" name="focusRectsChk"><property name="text"><string>Always show focus rectangles</string></property></widget></item>
+       <item row="2" column="1"><widget class="QCheckBox" name="largeHitTargetsChk"><property name="text"><string>Larger buttons and spacing</string></property></widget></item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="btnBox">
+     <property name="standardButtons"><set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set></property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RiskLegendPage</class>
+ <widget class="QWidget" name="RiskLegendPage">
+  <property name="windowTitle"><string>Legend &amp; Filters</string></property>
+  <layout class="QVBoxLayout" name="dockRoot">
+   <item>
+    <widget class="QGroupBox" name="groupCategories">
+     <property name="title"><string>Categories</string></property>
+     <layout class="QVBoxLayout" name="catLayout">
+      <item><widget class="QListWidget" name="catList">
+        <property name="selectionMode"><enum>QAbstractItemView::MultiSelection</enum></property>
+        <item><property name="text"><string>Marketing</string></property></item>
+        <item><property name="text"><string>Analytics</string></property></item>
+        <item><property name="text"><string>Functional</string></property></item>
+        <item><property name="text"><string>Necessary</string></property></item>
+        <item><property name="text"><string>Unknown</string></property></item>
+      </widget></item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupRisk">
+     <property name="title"><string>Risk Levels</string></property>
+     <layout class="QVBoxLayout" name="riskLayout">
+      <item><widget class="QListWidget" name="riskList">
+        <property name="selectionMode"><enum>QAbstractItemView::MultiSelection</enum></property>
+        <item><property name="text"><string>Critical</string></property></item>
+        <item><property name="text"><string>High</string></property></item>
+        <item><property name="text"><string>Medium</string></property></item>
+        <item><property name="text"><string>Low</string></property></item>
+      </widget></item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="applyDockFiltersBtn">
+     <property name="text"><string>Apply Filters</string></property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

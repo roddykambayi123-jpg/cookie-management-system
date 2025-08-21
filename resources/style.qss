@@ -1,0 +1,124 @@
+/* style.qss - Modern polished look for Cookie Management System */
+
+/* General background */
+QMainWindow {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+QLabel, QGroupBox, QCheckBox, QComboBox, QLineEdit {
+    color: white;
+    font-size: 14px;
+}
+
+/* Table styling */
+QTableWidget {
+    background-color: #1e1e1e;
+    alternate-background-color: #2a2a2a;
+    color: white;
+    gridline-color: #444;
+    selection-background-color: #3d8ec9;
+}
+
+/* Read Cookies button */
+QPushButton#pushButton_readcookies {
+    background-color: #2196F3;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* Analyse Cookies button */
+QPushButton#pushButton_analysecookies {
+    background-color: #FFA500;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* Delete Selected button */
+QPushButton#pushButton_deleteSelected {
+    background-color: #f44336;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* Delete Cookies button */
+QPushButton#pushButton_deletecookies {
+    background-color: #d32f2f;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* Export Database button */
+QPushButton#pushButton_exportdatabase {
+    background-color: #9c27b0;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* Learn About Cookies button */
+QPushButton#pushButton_learnAboutCookies {
+    background-color: #388E3C;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* Summary panel (TextEdit) */
+QTextEdit#textSummary {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #2a2a2a, stop:1 #3e3e3e);
+    color: white;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* CheckBox styling */
+QCheckBox::indicator {
+    border: 1px solid white;
+    background-color: #2a2a2a;
+    width: 16px;
+    height: 16px;
+}
+QCheckBox::indicator:checked {
+    background-color: #00c853;
+}
+
+/* Category badges (optional stylings to inject manually) */
+/* Can be used dynamically in C++ to assign color per category */
+.category-functional {
+    background-color: #4caf50;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 10px;
+}
+.category-analytics {
+    background-color: #ff9800;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 10px;
+}
+.category-marketing {
+    background-color: #f44336;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 10px;
+}
+.category-security {
+    background-color: #00bcd4;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 10px;
+}

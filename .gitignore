@@ -1,0 +1,21 @@
+# Build artifacts
+build/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Qt generated files
+*.pro.user
+*.qmake.stash
+Makefile*
+*.autosave
+
+# macOS system files
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
