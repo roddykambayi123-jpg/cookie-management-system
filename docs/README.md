@@ -120,6 +120,12 @@ Main Window after reading from a  browser
 The Diagnostic Window containing extra information (Ctrl + I)
 
 
+
+<img width="297" height="306" alt="Screenshot 2025-08-22 at 13 32 35" src="https://github.com/user-attachments/assets/075f0981-4881-40e7-8dd2-b7403bdbb76e" />
+
+Browser Picker Window
+
+
 ---
 
 ## Permissions (macOS Safari)
