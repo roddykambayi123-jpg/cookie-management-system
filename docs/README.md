@@ -247,7 +247,7 @@ cp resources/cookie.png AppDir/usr/share/icons/hicolor/256x256/apps/cms.png
 
 ## License
 
-MIT (see `LICENSE`).
+MIT (see /docs/`LICENSE`).
 
 ---
 
